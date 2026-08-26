@@ -5,6 +5,7 @@ export type TransactionType = 'INCOME' | 'EXPENSE';
 export class Transaction {
   constructor(
     private readonly id: string,
+    private readonly userId: string,
     private readonly accountId: string,
     private amount: number,
     private readonly type: 'INCOME' | 'EXPENSE',
@@ -14,6 +15,7 @@ export class Transaction {
   ) {}
   static create(props: {
     id: string;
+    userId: string;
     accountId: string;
     amount: number;
     type: TransactionType;
@@ -35,6 +37,7 @@ export class Transaction {
 
     return new Transaction(
       props.id,
+      props.userId,
       props.accountId,
       props.amount,
       props.type,
@@ -47,6 +50,10 @@ export class Transaction {
   // Getters
   getId(): string {
     return this.id;
+  }
+
+  getUserId(): string {
+    return this.userId;
   }
 
   getAccountId(): string {

@@ -122,12 +122,23 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.TransactionScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   accountId: 'accountId',
   amount: 'amount',
   type: 'type',
   categoryId: 'categoryId',
   description: 'description',
   date: 'date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  googleId: 'googleId',
+  email: 'email',
+  firstName: 'firstName',
+  lastName: 'lastName',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -141,13 +152,19 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
 exports.TransactionType = exports.$Enums.TransactionType = {
   INCOME: 'INCOME',
   EXPENSE: 'EXPENSE'
 };
 
 exports.Prisma.ModelName = {
-  Transaction: 'Transaction'
+  Transaction: 'Transaction',
+  User: 'User'
 };
 
 /**

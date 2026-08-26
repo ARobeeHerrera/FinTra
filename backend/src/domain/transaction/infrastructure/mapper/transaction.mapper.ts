@@ -5,6 +5,7 @@ export class TransactionMapper {
   static toDomain(raw: PrismaTransaction): Transaction {
     return Transaction.create({
       id: raw.id,
+      userId: raw.userId,
       accountId: raw.accountId,
       amount: raw.amount,
       type: raw.type,
@@ -19,6 +20,7 @@ export class TransactionMapper {
   ): Omit<PrismaTransaction, 'createdAt' | 'updatedAt'> {
     return {
       id: transaction.getId(),
+      userId: transaction.getUserId(),
       accountId: transaction.getAccountId(),
       amount: transaction.getAmount(),
       type: transaction.getType(),
