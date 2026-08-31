@@ -5,12 +5,10 @@ import {
   IsPositive,
   IsIn,
   IsDateString,
+  IsOptional,
 } from 'class-validator';
 
 export class CreateTransactionDTO {
-  @IsString()
-  userId!: string;
-
   @IsString()
   @IsNotEmpty()
   accountId!: string;
@@ -31,5 +29,28 @@ export class CreateTransactionDTO {
   description!: string;
 
   @IsDateString()
+  date!: string;
+}
+
+export class UpdateTransactionDTO {
+  @IsNumber()
+  @IsPositive()
+  @IsOptional()
+  amount!: number;
+
+  @IsIn(['INCOME', 'EXPENSE'])
+  @IsOptional()
+  type!: 'INCOME' | 'EXPENSE';
+
+  @IsString()
+  @IsOptional()
+  categoryId!: string;
+
+  @IsString()
+  @IsOptional()
+  description!: string;
+
+  @IsDateString()
+  @IsOptional()
   date!: string;
 }

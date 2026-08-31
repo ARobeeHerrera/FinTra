@@ -7,6 +7,7 @@ describe('Transaction Mapper', () => {
     const raw = {
       id: '12345',
       accountId: '67890',
+      userId: '67890',
       amount: 100.0,
       type: 'EXPENSE' as PrismaTransaction['type'],
       categoryId: '2',
@@ -26,12 +27,14 @@ describe('Transaction Mapper', () => {
     expect(domainTransaction.getCategoryId()).toBe(raw.categoryId);
     expect(domainTransaction.getDescription()).toBe(raw.description);
     expect(domainTransaction.getDate()).toEqual(raw.date);
+    expect(domainTransaction.getUserId()).toEqual(raw.userId);
   });
 
   it('should map a valid PrismaTransaction to a valid DomainTransaction', () => {
     const raw = {
       id: '12345',
       accountId: '67890',
+      userId: '67890',
       amount: 0,
       type: 'EXPENSE' as PrismaTransaction['type'],
       categoryId: '2',
@@ -50,6 +53,7 @@ describe('Transaction Mapper', () => {
     const raw = Transaction.create({
       id: '12345',
       accountId: '67890',
+      userId: '67890',
       amount: 100,
       type: 'EXPENSE',
       categoryId: '2',
@@ -62,6 +66,7 @@ describe('Transaction Mapper', () => {
     expect(prismaTransaction).toEqual({
       id: raw.getId(),
       accountId: raw.getAccountId(),
+      userId: raw.getUserId(),
       amount: raw.getAmount(),
       type: raw.getType(),
       categoryId: raw.getCategoryId(),

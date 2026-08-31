@@ -4,7 +4,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
 import { JwtAuthGuard } from '../guards/jwt-auth-guard';
 
-interface AuthenticatedRequest extends Request {
+export interface AuthenticatedRequest extends Request {
   user: {
     id: string;
     email: string;

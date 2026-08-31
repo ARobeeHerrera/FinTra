@@ -8,8 +8,8 @@ export class Transaction {
     private readonly userId: string,
     private readonly accountId: string,
     private amount: number,
-    private readonly type: 'INCOME' | 'EXPENSE',
-    private readonly categoryId: string,
+    private type: 'INCOME' | 'EXPENSE',
+    private categoryId: string,
     private description: string,
     private readonly date: Date,
   ) {}
@@ -89,5 +89,19 @@ export class Transaction {
   updateDescription(newDescription: string): void {
     Guard.againstEmptyString(newDescription, 'Description must not be empty');
     this.description = newDescription;
+  }
+
+  updateCategoryId(newCategoryId: string): void {
+    Guard.againstEmptyString(newCategoryId, 'Category ID must not be empty');
+    this.categoryId = newCategoryId;
+  }
+
+  updateType(newType: TransactionType): void {
+    Guard.againstOutOfRange(
+      newType,
+      ['INCOME', 'EXPENSE'],
+      `${newType} does not belong to either INCOME and EXPENSE`,
+    );
+    this.type = newType;
   }
 }

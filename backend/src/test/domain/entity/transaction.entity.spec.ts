@@ -6,6 +6,7 @@ describe('Transaction Domain', () => {
     const transaction = Transaction.create({
       id: '12345',
       accountId: '0981234',
+      userId: '0981234',
       amount: 100,
       type: 'EXPENSE',
       categoryId: '2',
@@ -28,6 +29,7 @@ describe('Transaction Domain', () => {
       Transaction.create({
         id: '12345',
         accountId: '0981234',
+        userId: '0981234',
         amount: -100,
         type: 'EXPENSE',
         categoryId: '2',
@@ -42,6 +44,7 @@ describe('Transaction Domain', () => {
       Transaction.create({
         id: '12345',
         accountId: '0981234',
+        userId: '0981234',
         amount: 0,
         type: 'EXPENSE',
         categoryId: '2',
@@ -56,6 +59,7 @@ describe('Transaction Domain', () => {
       Transaction.create({
         id: '12345',
         accountId: '0981234',
+        userId: '0981234',
         amount: 100,
         type: 'Expense' as any,
         categoryId: '2',
@@ -70,6 +74,7 @@ describe('Transaction Domain', () => {
       Transaction.create({
         id: '',
         accountId: '0981234',
+        userId: '0981234',
         amount: 100,
         type: 'EXPENSE',
         categoryId: '2',
@@ -84,6 +89,7 @@ describe('Transaction Domain', () => {
       Transaction.create({
         id: '12345',
         accountId: '',
+        userId: '0981234',
         amount: 100,
         type: 'EXPENSE',
         categoryId: '2',
@@ -98,6 +104,7 @@ describe('Transaction Domain', () => {
       Transaction.create({
         id: '12345',
         accountId: '0981234',
+        userId: '0981234',
         amount: 100,
         type: 'EXPENSE',
         categoryId: '',
@@ -112,6 +119,7 @@ describe('Transaction Domain', () => {
       Transaction.create({
         id: '12345',
         accountId: '0981234',
+        userId: '0981234',
         amount: 100,
         type: 'EXPENSE',
         categoryId: '2',
@@ -126,6 +134,7 @@ describe('Transaction Domain', () => {
       Transaction.create({
         id: '12345',
         accountId: '0981234',
+        userId: '0981234',
         amount: 100,
         type: 'EXPENSE',
         categoryId: '2',
@@ -139,6 +148,7 @@ describe('Transaction Domain', () => {
     const transaction = Transaction.create({
       id: '12345',
       accountId: '0981234',
+      userId: '0981234',
       amount: 100,
       type: 'EXPENSE',
       categoryId: '2',
@@ -155,6 +165,7 @@ describe('Transaction Domain', () => {
     const transaction = Transaction.create({
       id: '12345',
       accountId: '0981234',
+      userId: '0981234',
       amount: 100,
       type: 'EXPENSE',
       categoryId: '2',

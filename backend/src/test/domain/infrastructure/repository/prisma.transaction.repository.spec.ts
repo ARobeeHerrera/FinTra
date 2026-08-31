@@ -23,6 +23,7 @@ describe('Prisma Transaction Repository', () => {
     const transaction = Transaction.create({
       id: '12345',
       accountId: '123415',
+      userId: '123415',
       amount: 100,
       type: 'EXPENSE',
       categoryId: '2',
@@ -37,6 +38,7 @@ describe('Prisma Transaction Repository', () => {
       create: {
         id: transaction.getId(),
         accountId: transaction.getAccountId(),
+        userId: transaction.getUserId(),
         amount: transaction.getAmount(),
         type: transaction.getType(),
         categoryId: transaction.getCategoryId(),
@@ -46,6 +48,7 @@ describe('Prisma Transaction Repository', () => {
       update: {
         id: '12345',
         accountId: '123415',
+        userId: '123415',
         amount: 100,
         type: 'EXPENSE',
         categoryId: '2',
