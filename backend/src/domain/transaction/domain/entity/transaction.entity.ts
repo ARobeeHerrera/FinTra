@@ -33,6 +33,7 @@ export class Transaction {
     );
     Guard.againstEmptyString(props.categoryId, 'Category ID cannot be empty');
     Guard.againstEmptyString(props.description, 'Description cannot be empty');
+    Guard.againstEmptyString(props.userId, 'User ID cannot be empty');
     Guard.againstInvalidDate(props.date, 'Invalid Date');
 
     return new Transaction(

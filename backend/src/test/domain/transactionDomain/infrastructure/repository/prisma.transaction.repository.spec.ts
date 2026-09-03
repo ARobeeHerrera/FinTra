@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { Transaction } from '../../../../domain/transaction/domain/entity/transaction.entity';
-import { PrismaTransactionRepository } from '../../../../domain/transaction/infrastructure/mapper/repository/prisma.transaction.repository';
+import { Transaction } from '../../../../../domain/transaction/domain/entity/transaction.entity';
+import { PrismaTransactionRepository } from '../../../../../domain/transaction/infrastructure/mapper/repository/prisma.transaction.repository';
 
 describe('Prisma Transaction Repository', () => {
   let repository: PrismaTransactionRepository;
@@ -46,14 +46,14 @@ describe('Prisma Transaction Repository', () => {
         date: transaction.getDate(),
       },
       update: {
-        id: '12345',
-        accountId: '123415',
-        userId: '123415',
-        amount: 100,
-        type: 'EXPENSE',
-        categoryId: '2',
-        description: 'Dinner',
-        date: new Date('2026-08-04'),
+        id: transaction.getId(),
+        accountId: transaction.getAccountId(),
+        userId: transaction.getUserId(),
+        amount: transaction.getAmount(),
+        type: transaction.getType(),
+        categoryId: transaction.getCategoryId(),
+        description: transaction.getDescription(),
+        date: transaction.getDate(),
       },
     });
   });
@@ -62,6 +62,7 @@ describe('Prisma Transaction Repository', () => {
     prismaMock.transaction.findUnique.mockResolvedValue({
       id: '12345',
       accountId: '0981234',
+      userId: 'test-user-id',
       amount: 100,
       type: 'EXPENSE',
       categoryId: '2',
@@ -78,6 +79,12 @@ describe('Prisma Transaction Repository', () => {
 
     expect(result).toBeInstanceOf(Transaction);
     expect(result?.getId()).toBe('12345');
+    expect(result?.getAccountId()).toBe('0981234');
+    expect(result?.getUserId()).toBe('test-user-id');
+    expect(result?.getAmount()).toBe(100);
+    expect(result?.getType()).toBe('EXPENSE');
+    expect(result?.getCategoryId()).toBe('2');
+    expect(result?.getDescription()).toBe('Food');
   });
 
   it('should return a null when no row is found', async () => {
@@ -93,6 +100,7 @@ describe('Prisma Transaction Repository', () => {
       {
         id: '1',
         accountId: '0981234',
+        userId: 'test-user-id',
         amount: 100,
         type: 'EXPENSE',
         categoryId: '2',
@@ -104,6 +112,7 @@ describe('Prisma Transaction Repository', () => {
       {
         id: '2',
         accountId: '0981234',
+        userId: 'test-user-id',
         amount: 200,
         type: 'INCOME',
         categoryId: '1',
@@ -117,6 +126,10 @@ describe('Prisma Transaction Repository', () => {
     const result = await repository.findByAccountId('0981234');
 
     expect(result).toHaveLength(2);
+    expect(result[0]).toBeInstanceOf(Transaction);
+    expect(result[0].getId()).toBe('1');
+    expect(result[1]).toBeInstanceOf(Transaction);
+    expect(result[1].getId()).toBe('2');
   });
 
   it('should call prisma.transaction.delete with the correct id', async () => {

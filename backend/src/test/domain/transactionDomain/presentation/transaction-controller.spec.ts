@@ -7,15 +7,15 @@ import {
 } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import request = require('supertest');
-import { TransactionModule } from '../../../domain/transaction/transaction.module';
-import { CreateTransactionUseCase } from '../../../domain/transaction/useCases/create-transaction.use-case';
-import { Transaction } from '../../../domain/transaction/domain/entity/transaction.entity';
-import { FindTransactionByIdUseCase } from '../../../domain/transaction/useCases/find-transaction-by-id.use-case';
-import { JwtAuthGuard } from '../../../auth/guards/jwt-auth-guard';
-import { AuthenticatedRequest } from '../../../auth/presentation/auth-controller';
-import { DeleteTransactionUseCase } from '../../../domain/transaction/useCases/delete-transaction.use-case';
-import { FindTransactionByAccountIdUseCase } from '../../../domain/transaction/useCases/find-transaction-by-account-id.use-case';
-import { UpdateTransactionUseCase } from '../../../domain/transaction/useCases/update-transaction.use-case';
+import { TransactionModule } from '../../../../domain/transaction/transaction.module';
+import { CreateTransactionUseCase } from '../../../../domain/transaction/useCases/create-transaction.use-case';
+import { Transaction } from '../../../../domain/transaction/domain/entity/transaction.entity';
+import { FindTransactionByIdUseCase } from '../../../../domain/transaction/useCases/find-transaction-by-id.use-case';
+import { JwtAuthGuard } from '../../../../auth/guards/jwt-auth-guard';
+import { AuthenticatedRequest } from '../../../../auth/presentation/auth-controller';
+import { DeleteTransactionUseCase } from '../../../../domain/transaction/useCases/delete-transaction.use-case';
+import { FindTransactionByAccountIdUseCase } from '../../../../domain/transaction/useCases/find-transaction-by-account-id.use-case';
+import { UpdateTransactionUseCase } from '../../../../domain/transaction/useCases/update-transaction.use-case';
 
 describe('Transaction Controller', () => {
   let app: INestApplication;

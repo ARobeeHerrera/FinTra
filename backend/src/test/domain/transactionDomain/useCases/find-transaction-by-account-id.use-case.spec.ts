@@ -1,6 +1,6 @@
-import { FindTransactionByAccountIdUseCase } from '../../../domain/transaction/useCases/find-transaction-by-account-id.use-case';
-import { ITransactionRepository } from '../../../domain/transaction/repository/transaction.repository';
-import { Transaction } from '../../../domain/transaction/domain/entity/transaction.entity';
+import { FindTransactionByAccountIdUseCase } from '../../../../domain/transaction/useCases/find-transaction-by-account-id.use-case';
+import { ITransactionRepository } from '../../../../domain/transaction/repository/transaction.repository';
+import { Transaction } from '../../../../domain/transaction/domain/entity/transaction.entity';
 import { ForbiddenException, NotFoundException } from '@nestjs/common';
 
 describe('FindTransactionByAccountId', () => {

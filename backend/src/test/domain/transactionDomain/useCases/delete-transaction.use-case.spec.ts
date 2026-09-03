@@ -1,7 +1,7 @@
 import { ForbiddenException, NotFoundException } from '@nestjs/common';
-import { Transaction } from '../../../domain/transaction/domain/entity/transaction.entity';
-import { ITransactionRepository } from '../../../domain/transaction/repository/transaction.repository';
-import { DeleteTransactionUseCase } from '../../../domain/transaction/useCases/delete-transaction.use-case';
+import { Transaction } from '../../../../domain/transaction/domain/entity/transaction.entity';
+import { ITransactionRepository } from '../../../../domain/transaction/repository/transaction.repository';
+import { DeleteTransactionUseCase } from '../../../../domain/transaction/useCases/delete-transaction.use-case';
 
 describe('DeleteTransactionUseCase', () => {
   let repository: jest.Mocked<ITransactionRepository>;

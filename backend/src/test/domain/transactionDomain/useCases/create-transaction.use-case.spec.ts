@@ -1,5 +1,5 @@
-import { CreateTransactionUseCase } from '../../../domain/transaction/useCases/create-transaction.use-case';
-import { ITransactionRepository } from '../../../domain/transaction/repository/transaction.repository';
+import { CreateTransactionUseCase } from '../../../../domain/transaction/useCases/create-transaction.use-case';
+import { ITransactionRepository } from '../../../../domain/transaction/repository/transaction.repository';
 
 describe('CreateTransactionUseCase', () => {
   let repository: jest.Mocked<ITransactionRepository>;

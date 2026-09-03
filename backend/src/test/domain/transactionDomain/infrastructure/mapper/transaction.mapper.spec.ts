@@ -1,6 +1,6 @@
-import { Transaction as PrismaTransaction } from '../../../../../prisma/generated/client';
-import { TransactionMapper } from '../../../../domain/transaction/infrastructure/mapper/transaction.mapper';
-import { Transaction } from '../../../../domain/transaction/domain/entity/transaction.entity';
+import { Transaction as PrismaTransaction } from '../../../../../../prisma/generated/client';
+import { TransactionMapper } from '../../../../../domain/transaction/infrastructure/mapper/transaction.mapper';
+import { Transaction } from '../../../../../domain/transaction/domain/entity/transaction.entity';
 
 describe('Transaction Mapper', () => {
   it('should map a raw PrismaTransaction to a valid DomainTransaction', () => {

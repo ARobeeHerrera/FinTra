@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Transaction } from '../../../domain/transaction/domain/entity/transaction.entity';
+import { Transaction } from '../../../../domain/transaction/domain/entity/transaction.entity';
 
 describe('Transaction Domain', () => {
   it('should create the valid transaction when all props are valid', () => {
