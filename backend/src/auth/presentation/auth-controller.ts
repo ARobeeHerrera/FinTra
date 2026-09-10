@@ -1,8 +1,9 @@
-import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
 import { JwtAuthGuard } from '../guards/jwt-auth-guard';
+import { ConfigService } from '@nestjs/config';
 
 export interface AuthenticatedRequest extends Request {
   user: {
@@ -15,7 +16,10 @@ export interface AuthenticatedRequest extends Request {
 }
 @Controller('auth')
 export class AuthController {
-  constructor(private jwtService: JwtService) {}
+  constructor(
+    private jwtService: JwtService,
+    private configService: ConfigService,
+  ) {}
 
   @Get('google')
   @UseGuards(AuthGuard('google'))
@@ -29,6 +33,8 @@ export class AuthController {
     const token = this.jwtService.sign({
       sub: user.id,
       email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
     });
 
     res.cookie('access_token', token, {
@@ -38,12 +44,23 @@ export class AuthController {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    res.redirect('http://localhost:5173/dashboard');
+    res.redirect(`${this.configService.get('FRONTEND_URL')}/dashboard`);
   }
 
   @Get('me')
   @UseGuards(JwtAuthGuard)
   getProfile(@Req() req: AuthenticatedRequest) {
     return req.user;
+  }
+
+  @Post('logout')
+  logout(@Res() res: Response) {
+    res.clearCookie('access_token', {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+    });
+
+    return res.send({ message: 'Logged out successfully' });
   }
 }

@@ -7,6 +7,8 @@ import { CreateAccountUseCase } from './useCase/create-account.use-case';
 import { DeleteAccountUseCase } from './useCase/delete-account.use-case';
 import { FindAccountByUserIdUseCase } from './useCase/find-account-by-user-id.use-case';
 import { UpdateAccountUseCase } from './useCase/update-account.use-case';
+import { GetAccountBalanceUseCase } from './useCase/get-account-balance.use-case';
+import { TransactionModule } from '../transaction/transaction.module';
 
 @Module({
   controllers: [AccountController],
@@ -16,10 +18,12 @@ import { UpdateAccountUseCase } from './useCase/update-account.use-case';
     FindAccountByUserIdUseCase,
     UpdateAccountUseCase,
     DeleteAccountUseCase,
+    GetAccountBalanceUseCase,
     {
       provide: ACCOUNT_REPOSITORY,
       useClass: PrismaAccountRepository,
     },
   ],
+  imports: [TransactionModule],
 })
 export class AccountModule {}

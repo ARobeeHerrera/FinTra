@@ -8,6 +8,8 @@ import { Strategy } from 'passport-jwt';
 interface JwtPayload {
   sub: string;
   email: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 function cookieExtractor(req: Request): string | null {
@@ -30,6 +32,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   validate(payload: JwtPayload) {
-    return { id: payload.sub, email: payload.email };
+    return {
+      id: payload.sub,
+      email: payload.email,
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+    };
   }
 }

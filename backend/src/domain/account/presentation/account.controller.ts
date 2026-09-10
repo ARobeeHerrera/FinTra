@@ -19,6 +19,7 @@ import { AuthenticatedRequest } from '../../../auth/presentation/auth-controller
 import { FindAccountByUserIdUseCase } from '../useCase/find-account-by-user-id.use-case';
 import { UpdateAccountUseCase } from '../useCase/update-account.use-case';
 import { DeleteAccountUseCase } from '../useCase/delete-account.use-case';
+import { GetAccountBalanceUseCase } from '../useCase/get-account-balance.use-case';
 
 @UseGuards(JwtAuthGuard)
 @Controller('accounts')
@@ -28,6 +29,7 @@ export class AccountController {
     private readonly findAccountByUserIdUseCase: FindAccountByUserIdUseCase,
     private readonly updateAccountUseCase: UpdateAccountUseCase,
     private readonly deleteAccountUseCase: DeleteAccountUseCase,
+    private readonly getAccountBalanceUseCase: GetAccountBalanceUseCase,
   ) {}
 
   @Post()
@@ -44,11 +46,22 @@ export class AccountController {
     return account;
   }
 
-  @Get(':me')
-  async findMyAccount(@Req() req: AuthenticatedRequest): Promise<Account> {
+  @Get('me')
+  async findMyAccount(@Req() req: AuthenticatedRequest) {
     const account = await this.findAccountByUserIdUseCase.execute(req.user.id);
+    const accountBalance = await this.getAccountBalanceUseCase.execute(
+      req.user.id,
+    );
 
-    return account;
+    return {
+      account: {
+        id: account.getId(),
+        userId: account.getUserId(),
+        name: account.getName(),
+        currency: account.getCurrency(),
+      },
+      balance: accountBalance,
+    };
   }
 
   @Patch(':id')

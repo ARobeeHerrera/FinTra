@@ -3,6 +3,7 @@ import { PrismaModule } from './shared/infrastructure/prisma/prisma.module';
 import { TransactionModule } from './domain/transaction/transaction.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth-module';
+import { AccountModule } from './domain/account/account.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { AuthModule } from './auth/auth-module';
       isGlobal: true,
     }),
     PrismaModule,
+    AccountModule,
     TransactionModule,
     AuthModule,
   ],

@@ -23,5 +23,6 @@ import { DeleteTransactionUseCase } from './useCases/delete-transaction.use-case
       useClass: PrismaTransactionRepository,
     },
   ],
+  exports: [TRANSACTION_REPOSITORY],
 })
 export class TransactionModule {}
